@@ -1,4 +1,4 @@
-# Git-starter Cristian Molina branch
+# Git-starter
 ---
 Git repository for the subject Basics of Game Development in TLU
 
