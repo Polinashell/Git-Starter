@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ateeq's Slider Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white; /* Set background to white */
+            text-align: center;
+        }
+
+        /* Header and Footer */
+        header, footer {
+            background-color: #d32f2f; /* Set header and footer to red */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Slider */
+        .slider-container {
+            margin: 50px auto;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden; /* Ensure that slides are contained */
+        }
+
+        .slides {
+            display: none;
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Navigation buttons */
+       
+
+        /* Dots (indicator) */
+        .dot-container {
+            text-align: center;
+            padding: 15px;
+            background: #ddd;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active-dot, .dot:hover {
+            background-color: black;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .slider-container {
+                max-width: 100%;
+                margin: 20px 0; /* Adjust margin for smaller screens */
+            }
+
+            .prev, .next {
+                font-size: 14px; /* Smaller font size for buttons */
+                padding: 10px; /* Adjust padding for buttons */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1><i>Ateeq was here</i></h1>
+    </header>
+
+    <!-- Body with Slider -->
+    <div class="slider-container">
+        <img class="slides active" src="../Images/1.jpeg" alt="Cool Image">
+        <img class="slides" src="../Images/cool image.jpg" alt="Cool Image">
+        <img class="slides" src="../Images/Helle'sRotaryPhone.png" alt="Helle's Rotary Phone">
+        
+        <!-- Navigation buttons -->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <!-- Dots indicator -->
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Ateeq's Page. All rights reserved.</p>
+    </footer>
+
+    <!-- Slider Script -->
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("slides");
+            const dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";  
+            dots[slideIndex - 1].className += " active-dot";
+        }
+    </script>
+
+</body>
+</html>
